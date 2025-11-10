@@ -1,0 +1,15 @@
+[project]
+name = "walutomat-ha"
+version = "0.1.0"
+
+[tool.pytest.ini_options]
+addopts = "--cov=custom_components.walutomat --cov-report=term-missing"
+asyncio_mode = "auto"
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-cov",
+    "pytest-homeassistant-custom-component",
+    "requests-mock",
+]
