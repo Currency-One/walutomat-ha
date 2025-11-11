@@ -10,7 +10,7 @@ from homeassistant.components.sensor import (
     SensorStateClass,
 )
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.core import HomeAssistant, callback
+from homeassistant.core import HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
@@ -54,11 +54,16 @@ async def async_setup_entry(
     if "rate_sensors_created" not in hass.data[DOMAIN]:
         rates_coordinator: WalutomatRatesCoordinator = hass.data[DOMAIN]["rates_coordinator"]
         if rates_coordinator.data:
-            rate_sensors = [
-                WalutomatRateSensor(rates_coordinator, pair, "buy_rate", "Buy Rate"),
-                WalutomatRateSensor(rates_coordinator, pair, "sell_rate", "Sell Rate"),
-                for pair in rates_coordinator.data
-            ]
+            rate_sensors = []
+            for pair in rates_coordinator.data:
+                rate_sensors.append(
+                    WalutomatRateSensor(rates_coordinator, pair, "buy_rate", "Buy Rate")
+                )
+                rate_sensors.append(
+                    WalutomatRateSensor(
+                        rates_coordinator, pair, "sell_rate", "Sell Rate"
+                    )
+                )
             entities.extend(rate_sensors)
             hass.data[DOMAIN]["rate_sensors_created"] = True
             _LOGGER.debug("Created %d rate sensors", len(rate_sensors))
