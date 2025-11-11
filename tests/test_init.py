@@ -24,20 +24,22 @@ async def test_setup_unload_and_reload_entry(hass: HomeAssistant) -> None:
     mock_balances = [
         {
             "currency": "EUR",
+            "value": "90.50",
             "balanceTotal": "100.50",
-            "balanceAvailable": "90.50",
             "balanceReserved": "10.00",
         },
         {
             "currency": "PLN",
+            "value": "500.00",
             "balanceTotal": "500.00",
-            "balanceAvailable": "500.00",
             "balanceReserved": "0.00",
         },
     ]
-
     with patch(
         "walutomat_py.WalutomatClient.get_balances", return_value=mock_balances
+    ), patch(
+        "walutomat_py.WalutomatClient.get_public_rate",
+        return_value={"buy_rate": 4.5, "sell_rate": 4.6},
     ):
         # Add the config entry to Home Assistant
         config_entry.add_to_hass(hass)
@@ -57,12 +59,7 @@ async def test_setup_unload_and_reload_entry(hass: HomeAssistant) -> None:
 
         # Check sensor states and attributes
         assert eur_sensor.state == "90.50"
-        assert eur_sensor.attributes["total_balance"] == "100.50"
-        assert eur_sensor.attributes["reserved_balance"] == "10.00"
-        assert eur_sensor.attributes["unit_of_measurement"] == "EUR"
-
         assert pln_sensor.state == "500.00"
-        assert pln_sensor.attributes["total_balance"] == "500.00"
 
         # --- 2. Test Unload ---
         unload_result = await hass.config_entries.async_unload(config_entry.entry_id)

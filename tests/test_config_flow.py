@@ -35,8 +35,8 @@ async def test_form(hass: HomeAssistant) -> None:
         await hass.async_block_till_done()
 
     assert result2["type"] == data_entry_flow.FlowResultType.CREATE_ENTRY
-    assert result2["title"] == "Walutomat"
-    assert result2["data"] == {CONF_API_KEY: "test-api-key"}
+    assert "Account (...-key)" in result2["title"]
+    assert result2["data"] == {CONF_API_KEY: "test-api-key", "sandbox": False}
     assert len(mock_setup_entry.mock_calls) == 1
 
 

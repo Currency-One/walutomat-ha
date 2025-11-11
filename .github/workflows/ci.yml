@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.11", "3.12"]
+        python-version: ["3.12", "3.13"]
 
     steps:
     - uses: actions/checkout@v4
@@ -26,7 +26,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install ruff
         pip install .[test]
-        pip install walutomat-py==0.0.1
+        pip install walutomat-py==0.0.20251110.201342
 
     - name: Lint with ruff
       run: |
