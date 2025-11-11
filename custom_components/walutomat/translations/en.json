@@ -1,0 +1,33 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Walutomat Setup",
+                "description": "To monitor your account balances, please enter your Walutomat API key. You can generate one in the [Walutomat user panel]({api_key_url}).\n\nIf you leave the API key field empty, the integration will only create public exchange rate sensors.",
+                "data": {
+                    "api_key": "API Key",
+                    "sandbox": "Use sandbox environment"
+                }
+            }
+        },
+        "error": {
+            "cannot_connect": "Failed to connect to the Walutomat API. Please check your API key and try again.",
+            "unknown": "An unexpected error occurred."
+        },
+        "abort": {
+            "already_configured": "This Walutomat account is already configured."
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "Walutomat Options",
+                "data": {
+                    "rates_update_interval": "Exchange rates update interval (minutes)",
+                    "balances_update_interval": "Balances update interval (minutes)",
+                    "currency_pairs": "Currency pairs for exchange rate sensors"
+                }
+            }
+        }
+    }
+}
