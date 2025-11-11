@@ -47,14 +47,22 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload a config entry."""
-    if unload_ok := await hass.config_entries.async_unload_platforms(entry, PLATFORMS):
+    # Get all walutomat entries before unloading
+    all_entries = hass.config_entries.async_entries(DOMAIN)
+
+    unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
+
+    if unload_ok:
         # Clean up the entry-specific data
         if entry.entry_id in hass.data[DOMAIN]:
             hass.data[DOMAIN].pop(entry.entry_id)
 
-        # Optional: clean up the global coordinator if no other entries are using it
-        # For simplicity, we'll leave it for now as it's lightweight.
-        # If this were a heavier process, we'd implement reference counting.
+        # If this was the last entry, clean up global data
+        if len(all_entries) == 1:
+            if "rates_coordinator" in hass.data[DOMAIN]:
+                hass.data[DOMAIN].pop("rates_coordinator")
+            if "rate_sensors_created" in hass.data[DOMAIN]:
+                hass.data[DOMAIN].pop("rate_sensors_created")
 
     return unload_ok
 

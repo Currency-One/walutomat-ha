@@ -57,11 +57,11 @@ async def async_setup_entry(
             rate_sensors = []
             for pair in rates_coordinator.data:
                 rate_sensors.append(
-                    WalutomatRateSensor(rates_coordinator, pair, "buy_rate", "Buy Rate")
+                    WalutomatRateSensor(rates_coordinator, pair, "buyRate", "Buy Rate")
                 )
                 rate_sensors.append(
                     WalutomatRateSensor(
-                        rates_coordinator, pair, "sell_rate", "Sell Rate"
+                        rates_coordinator, pair, "sellRate", "Sell Rate"
                     )
                 )
             entities.extend(rate_sensors)
@@ -114,7 +114,7 @@ class WalutomatBalanceSensor(CoordinatorEntity[WalutomatBalancesCoordinator], Se
     @property
     def native_value(self) -> float:
         """Return the state of the sensor."""
-        return self.coordinator.data[self._idx]["value"]
+        return self.coordinator.data[self._idx]["balanceAvailable"]
 
     @property
     def extra_state_attributes(self) -> Dict[str, Any]:
@@ -125,7 +125,6 @@ class WalutomatBalanceSensor(CoordinatorEntity[WalutomatBalancesCoordinator], Se
 class WalutomatRateSensor(CoordinatorEntity[WalutomatRatesCoordinator], SensorEntity):
     """Representation of a Walutomat Rate Sensor."""
 
-    _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_device_class = SensorDeviceClass.MONETARY
     _attr_icon = "mdi:cash-multiple"
 

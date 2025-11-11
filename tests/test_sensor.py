@@ -24,8 +24,8 @@ async def test_rate_sensors(hass: HomeAssistant) -> None:
     with patch(
         "walutomat_py.WalutomatClient.get_public_rate",
         side_effect=[
-            {"buy_rate": 4.5, "sell_rate": 4.6},
-            {"buy_rate": 3.8, "sell_rate": 3.9},
+            {"buyRate": 4.5, "sellRate": 4.6},
+            {"buyRate": 3.8, "sellRate": 3.9},
         ],
     ):
         config_entry.add_to_hass(hass)

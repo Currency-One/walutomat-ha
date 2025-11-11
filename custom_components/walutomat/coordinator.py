@@ -44,9 +44,14 @@ class WalutomatBalancesCoordinator(DataUpdateCoordinator[List[Dict[str, Any]]]):
     async def _async_update_data(self) -> List[Dict[str, Any]]:
         """Fetch data from API endpoint."""
         try:
-            return await self.hass.async_add_executor_job(self.client.get_balances)
+            balances = await self.hass.async_add_executor_job(self.client.get_balances)
+            _LOGGER.debug("Fetched balances data: %s", balances)
+            return balances
         except WalutomatAPIError as err:
             raise UpdateFailed(f"Error communicating with API for balances: {err}") from err
+        except Exception as err:
+            _LOGGER.error("Unexpected error fetching walutomat_balances data", exc_info=True)
+            raise UpdateFailed(f"Unexpected error fetching walutomat_balances data: {err}") from err
 
 
 class WalutomatRatesCoordinator(DataUpdateCoordinator[Dict[str, Any]]):
@@ -89,8 +94,10 @@ class WalutomatRatesCoordinator(DataUpdateCoordinator[Dict[str, Any]]):
             *[_fetch_pair(pair) for pair in selected_pairs]
         )
 
-        return {
+        rates = {
             pair: rate
             for pair, rate in zip(selected_pairs, results)
             if rate is not None
         }
+        _LOGGER.debug("Fetched rates data: %s", rates)
+        return rates
