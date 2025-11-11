@@ -1,0 +1,33 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Konfiguracja Walutomat",
+                "description": "Aby monitorować salda konta, wprowadź swój klucz API Walutomat. Możesz go wygenerować w [panelu użytkownika Walutomat]({api_key_url}).\n\nJeśli pozostawisz pole klucza API puste, integracja utworzy tylko publiczne sensory kursów wymiany.",
+                "data": {
+                    "api_key": "Klucz API",
+                    "sandbox": "Użyj środowiska sandbox"
+                }
+            }
+        },
+        "error": {
+            "cannot_connect": "Nie udało się połączyć z API Walutomat. Sprawdź swój klucz API i połączenie sieciowe.",
+            "unknown": "Wystąpił nieoczekiwany błąd."
+        },
+        "abort": {
+            "already_configured": "To konto Walutomat jest już skonfigurowane."
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "Opcje Walutomat",
+                "data": {
+                    "rates_update_interval": "Interwał aktualizacji kursów wymiany (minuty)",
+                    "balances_update_interval": "Interwał aktualizacji sald (minuty)",
+                    "currency_pairs": "Pary walut dla sensorów kursów wymiany"
+                }
+            }
+        }
+    }
+}

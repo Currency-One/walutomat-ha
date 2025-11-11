@@ -93,7 +93,12 @@ class WalutomatConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         )
 
         return self.async_show_form(
-            step_id="user", data_schema=user_schema, errors=errors
+            step_id="user",
+            data_schema=user_schema,
+            errors=errors,
+            description_placeholders={
+                "api_key_url": "https://user.walutomat.pl/#/api"
+            },
         )
 
 
