@@ -22,19 +22,12 @@ _LOGGER = logging.getLogger(__name__)
 
 # MDI icons mapping for currencies
 CURRENCY_ICONS = {
-    "PLN": "mdi:currency-pln",
     "EUR": "mdi:currency-eur",
     "USD": "mdi:currency-usd",
     "GBP": "mdi:currency-gbp",
     "CHF": "mdi:currency-chf",
-    "CZK": "mdi:currency-czk",
-    "SEK": "mdi:currency-sek",
-    "NOK": "mdi:currency-nok",
-    "DKK": "mdi:currency-dkk",
-    "HUF": "mdi:currency-huf",
     "UAH": "mdi:currency-uah",
     "RON": "mdi:currency-ron",
-    "BGN": "mdi:currency-bgn",
     "JPY": "mdi:currency-jpy",
     "CNY": "mdi:currency-cny",
 }
