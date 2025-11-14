@@ -1,8 +1,8 @@
 {
   "domain": "walutomat",
   "name": "Walutomat",
-  "documentation": "https://github.com/theundefined/walutomat-ha",
-  "issue_tracker": "https://github.com/theundefined/walutomat-ha/issues",
+  "documentation": "https://github.com/Currency-One/walutomat-ha",
+  "issue_tracker": "https://github.com/Currency-One/walutomat-ha/issues",
   "codeowners": ["@theundefined"],
   "config_flow": true,
   "iot_class": "cloud_polling",

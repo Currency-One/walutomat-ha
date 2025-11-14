@@ -27,7 +27,7 @@ This is the recommended way to install the integration.
     -   Click the three dots (⋮) in the top right corner and select **"Custom repositories"**.
     -   In the "Repository" field, paste the URL of this GitHub repository:
         ```
-        https://github.com/theundefined/walutomat-ha
+        https://github.com/Currency-One/walutomat-ha
         ```
     -   In the "Category" dropdown, select **"Integration"**.
     -   Click **"Add"**.
