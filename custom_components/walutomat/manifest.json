@@ -1,11 +1,11 @@
 {
   "domain": "walutomat",
   "name": "Walutomat",
-  "documentation": "https://github.com/Currency-One/walutomat-ha",
-  "issue_tracker": "https://github.com/Currency-One/walutomat-ha/issues",
   "codeowners": ["@theundefined"],
   "config_flow": true,
+  "documentation": "https://github.com/Currency-One/walutomat-ha",
   "iot_class": "cloud_polling",
-  "version": "0.1.0",
-  "requirements": ["walutomat-py==0.0.20251110.201342"]
+  "issue_tracker": "https://github.com/Currency-One/walutomat-ha/issues",
+  "requirements": ["walutomat-py==0.0.20251110.201342"],
+  "version": "0.1.0"
 }
